@@ -44,7 +44,7 @@
      :config
      (use-package consult-eglot
        :bind (:map eglot-mode-map
-              ("C-M-." . consult-eglot-symbols)))))
+                   ("C-M-." . consult-eglot-symbols)))))
   ('lsp-mode
    ;; Performace tuning
    ;; @see https://emacs-lsp.github.io/lsp-mode/page/performance/
@@ -54,6 +54,8 @@
    ;; Emacs client for the Language Server Protocol
    ;; https://github.com/emacs-lsp/lsp-mode#supported-languages
    (use-package lsp-mode
+     :custom
+     (lsp-completion-provider :none) ;; we use corfu!
      :diminish
      :defines (lsp-diagnostics-disabled-modes lsp-clients-python-library-directories)
      :autoload lsp-enable-which-key-integration
@@ -62,6 +64,7 @@
                            (unless (derived-mode-p 'emacs-lisp-mode 'lisp-mode 'makefile-mode 'snippet-mode)
                              (lsp-deferred))))
             ((markdown-mode yaml-mode yaml-ts-mode) . lsp-deferred)
+            (lsp-completion-mode . my/lsp-mode-setup-completion)
             (lsp-mode . (lambda ()
                           ;; Integrate `which-key'
                           (lsp-enable-which-key-integration)
@@ -72,36 +75,50 @@
                             (add-hook 'before-save-hook #'lsp-format-buffer t t)
                             (add-hook 'before-save-hook #'lsp-organize-imports t t)))))
      :bind (:map lsp-mode-map
-            ("C-c C-d" . lsp-describe-thing-at-point)
-            ([remap xref-find-definitions] . lsp-find-definition)
-            ([remap xref-find-references] . lsp-find-references))
-     :init (setq lsp-keymap-prefix "C-c l"
-                 lsp-keep-workspace-alive nil
-                 lsp-signature-auto-activate nil
-                 lsp-modeline-code-actions-enable nil
-                 lsp-modeline-diagnostics-enable nil
-                 lsp-modeline-workspace-status-enable nil
+                 ("C-c C-d" . lsp-describe-thing-at-point)
+                 ([remap xref-find-definitions] . lsp-find-definition)
+                 ([remap xref-find-references] . lsp-find-references))
+     :init
+     (defun my/orderless-dispatch-flex-first (_pattern index _total)
+       (and (eq index 0) 'orderless-flex))
 
-                 lsp-semantic-tokens-enable t
-                 lsp-progress-spinner-type 'progress-bar-filled
+     (defun my/lsp-mode-setup-completion ()
+       (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+             '(orderless)))
 
-                 lsp-enable-file-watchers nil
-                 lsp-enable-folding nil
-                 lsp-enable-symbol-highlighting nil
-                 lsp-enable-text-document-color nil
+     ;; Optionally configure the first word as flex filtered.
+     (add-hook 'orderless-style-dispatchers #'my/orderless-dispatch-flex-first nil 'local)
 
-                 lsp-enable-indentation nil
-                 lsp-enable-on-type-formatting nil
+     ;; Optionally configure the cape-capf-buster.
+     (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))
 
-                 ;; For diagnostics
-                 lsp-diagnostics-disabled-modes '(markdown-mode gfm-mode)
+     (setq lsp-keymap-prefix "C-c l"
+           lsp-keep-workspace-alive nil
+           lsp-signature-auto-activate nil
+           lsp-modeline-code-actions-enable nil
+           lsp-modeline-diagnostics-enable nil
+           lsp-modeline-workspace-status-enable nil
 
-                 ;; For clients
-                 lsp-clients-python-library-directories '("/usr/local/" "/usr/"))
+           lsp-semantic-tokens-enable t
+           lsp-progress-spinner-type 'progress-bar-filled
+
+           lsp-enable-file-watchers nil
+           lsp-enable-folding nil
+           lsp-enable-symbol-highlighting nil
+           lsp-enable-text-document-color nil
+
+           lsp-enable-indentation nil
+           lsp-enable-on-type-formatting nil
+
+           ;; For diagnostics
+           lsp-diagnostics-disabled-modes '(markdown-mode gfm-mode)
+
+           ;; For clients
+           lsp-clients-python-library-directories '("/usr/local/" "/usr/"))
      :config
      (use-package consult-lsp
        :bind (:map lsp-mode-map
-              ("C-M-." . consult-lsp-symbols)))
+                   ("C-M-." . consult-lsp-symbols)))
 
      (with-no-warnings
        ;; Disable `lsp-mode' in `git-timemachine-mode'
@@ -307,9 +324,9 @@
    (use-package lsp-treemacs
      :after lsp-mode
      :bind (:map lsp-mode-map
-            ("C-<f8>" . lsp-treemacs-errors-list)
-            ("M-<f8>" . lsp-treemacs-symbols)
-            ("s-<f8>" . lsp-treemacs-java-deps-list))
+                 ("C-<f8>" . lsp-treemacs-errors-list)
+                 ("M-<f8>" . lsp-treemacs-symbols)
+                 ("s-<f8>" . lsp-treemacs-java-deps-list))
      :init (lsp-treemacs-sync-mode 1)
      :config
      (with-eval-after-load 'ace-window

@@ -157,5 +157,9 @@ Otherwise the startup will be very slow."
 (require 'init-elixir)
 (require 'init-web)
 
+;;; My config
+;;(require 'init-evil)
+(require 'init-keybinding)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here

@@ -48,7 +48,8 @@
 ;; Optionally use the `orderless' completion style.
 (use-package orderless
   :custom
-  (completion-styles '(orderless basic))
+  (orderless-component-separator "[ &]")
+  (completion-styles '(orderless partial-completion basic))
   (completion-category-overrides '((file (styles basic partial-completion))))
   (orderless-component-separator #'orderless-escapable-split-on-space))
 
@@ -63,9 +64,11 @@
 
 (use-package vertico
   :bind (:map vertico-map
-         ("RET" . vertico-directory-enter)
-         ("DEL" . vertico-directory-delete-char)
-         ("M-DEL" . vertico-directory-delete-word))
+              ("C-j" . vertico-next)
+              ("C-k" . vertico-previous)
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
   :hook ((after-init . vertico-mode)
          (rfn-eshadow-update-overlay . vertico-directory-tidy)))
 

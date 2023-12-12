@@ -142,7 +142,7 @@ FACE defaults to inheriting from default and highlight."
                                    "Highlight indentations in small files for better performance."
                                    (unless (too-long-file-p)
                                      (highlight-indent-guides-mode 1))))
-  :init (setq highlight-indent-guides-method 'character
+  :init (setq highlight-indent-guides-method 'bitmap
               highlight-indent-guides-responsive 'top
               highlight-indent-guides-suppress-auto-error t)
   :config
@@ -170,7 +170,7 @@ FACE defaults to inheriting from default and highlight."
   :diminish
   :defines helpful-mode-map
   :bind (:map help-mode-map
-         ("w" . rainbow-mode))
+              ("w" . rainbow-mode))
   :hook ((html-mode php-mode helpful-mode) . rainbow-mode)
   :init (with-eval-after-load 'helpful
           (bind-key "w" #'rainbow-mode helpful-mode-map))
@@ -201,12 +201,12 @@ FACE defaults to inheriting from default and highlight."
   :custom-face
   (hl-todo ((t (:inherit default :height 0.9 :width condensed :weight bold :underline nil :inverse-video t))))
   :bind (:map hl-todo-mode-map
-         ([C-f3]    . hl-todo-occur)
-         ("C-c t p" . hl-todo-previous)
-         ("C-c t n" . hl-todo-next)
-         ("C-c t o" . hl-todo-occur)
-         ("C-c t r" . hl-todo-rg-project)
-         ("C-c t i" . hl-todo-insert))
+              ([C-f3]    . hl-todo-occur)
+              ("C-c t p" . hl-todo-previous)
+              ("C-c t n" . hl-todo-next)
+              ("C-c t o" . hl-todo-occur)
+              ("C-c t r" . hl-todo-rg-project)
+              ("C-c t i" . hl-todo-insert))
   :hook ((after-init . global-hl-todo-mode)
          (hl-todo-mode . (lambda ()
                            (add-hook 'flymake-diagnostic-functions
@@ -248,7 +248,7 @@ FACE defaults to inheriting from default and highlight."
   (diff-hl-insert ((t (:inherit diff-added :background unspecified))))
   (diff-hl-delete ((t (:inherit diff-removed :background unspecified))))
   :bind (:map diff-hl-command-map
-         ("SPC" . diff-hl-mark-hunk))
+              ("SPC" . diff-hl-mark-hunk))
   :hook ((after-init . global-diff-hl-mode)
          (after-init . global-diff-hl-show-hunk-mouse-mode)
          (dired-mode . diff-hl-dired-mode))
