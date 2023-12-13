@@ -32,13 +32,13 @@
 
 ;; Directional window-selection routines
 (use-package windmove
-  :ensure nil
+  :straight nil
   :hook (after-init . (lambda ()
                         (windmove-default-keybindings 'super))))
 
 ;; Restore old window configurations
 (use-package winner
-  :ensure nil
+  :straight nil
   :commands (winner-undo winner-redo)
   :hook (after-init . winner-mode)
   :init (setq winner-boring-buffers '("*Completions*"
@@ -148,9 +148,9 @@
   (popper-group-function #'popper-group-by-directory)
   (popper-echo-dispatch-actions t)
   :bind (:map popper-mode-map
-         ("C-h z"       . popper-toggle)
-         ("C-<tab>"     . popper-cycle)
-         ("C-M-<tab>"   . popper-toggle-type))
+              ("C-h z"       . popper-toggle)
+              ("C-<tab>"     . popper-cycle)
+              ("C-M-<tab>"   . popper-toggle-type))
   :hook (emacs-startup . popper-echo-mode)
   :init
   (setq popper-reference-buffers

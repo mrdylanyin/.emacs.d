@@ -88,7 +88,7 @@
   (git-timemachine-minibuffer-author-face ((t (:inherit success :foreground unspecified))))
   (git-timemachine-minibuffer-detail-face ((t (:inherit warning :foreground unspecified))))
   :bind (:map vc-prefix-map
-         ("t" . git-timemachine))
+              ("t" . git-timemachine))
   :hook ((git-timemachine-mode . (lambda ()
                                    "Improve `git-timemachine' buffers."
                                    ;; Display different colors in mode-line
@@ -199,7 +199,7 @@
 
 ;; Resolve diff3 conflicts
 (use-package smerge-mode
-  :ensure nil
+  :straight nil
   :diminish
   :pretty-hydra
   ((:title (pretty-hydra-title "Smerge" 'octicon "nf-oct-diff")
@@ -230,7 +230,7 @@
              (bury-buffer))
       "Save and bury buffer" :exit t))))
   :bind (:map smerge-mode-map
-         ("C-c m" . smerge-mode-hydra/body))
+              ("C-c m" . smerge-mode-hydra/body))
   :hook ((find-file . (lambda ()
                         (save-excursion
                           (goto-char (point-min))
@@ -243,7 +243,7 @@
 ;; Open github/gitlab/bitbucket page
 (use-package browse-at-remote
   :bind (:map vc-prefix-map
-         ("B" . browse-at-remote)))
+              ("B" . browse-at-remote)))
 
 ;; Git configuration modes
 (use-package git-modes)

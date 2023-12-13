@@ -22,7 +22,6 @@
 ;; load evil
 (use-package evil
   :demand t
-  :ensure t ;; install the evil package if not installed
   :init     ;; tweak evil's configuration before loading it
   (setq evil-search-module 'evil-search)
   (setq evil-ex-complete-emacs-commands nil)
@@ -41,7 +40,6 @@
 (use-package evil-collection
   :demand t
   :after evil
-  :ensure t
   :config
   (evil-collection-init))
 

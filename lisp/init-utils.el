@@ -113,11 +113,11 @@
 (use-package persistent-scratch
   :diminish
   :bind (:map persistent-scratch-mode-map
-         ([remap kill-buffer] . (lambda (&rest _)
-                                  (interactive)
-                                  (user-error "Scratch buffer cannot be killed")))
-         ([remap revert-buffer] . persistent-scratch-restore)
-         ([remap revert-this-buffer] . persistent-scratch-restore))
+              ([remap kill-buffer] . (lambda (&rest _)
+                                       (interactive)
+                                       (user-error "Scratch buffer cannot be killed")))
+              ([remap revert-buffer] . persistent-scratch-restore)
+              ([remap revert-this-buffer] . persistent-scratch-restore))
   :hook ((after-init . persistent-scratch-autosave-mode)
          (lisp-interaction-mode . persistent-scratch-mode))
   :init (setq persistent-scratch-backup-file-name-format "%Y-%m-%d"
@@ -135,9 +135,9 @@
 (use-package rg
   :hook (after-init . rg-enable-default-bindings)
   :bind (:map rg-global-map
-         ("c" . rg-dwim-current-dir)
-         ("f" . rg-dwim-current-file)
-         ("m" . rg-menu))
+              ("c" . rg-dwim-current-dir)
+              ("f" . rg-dwim-current-file)
+              ("m" . rg-menu))
   :init (setq rg-group-result t
               rg-show-columns t)
   :config
@@ -176,7 +176,7 @@
 
 ;; Process
 (use-package proced
-  :ensure nil
+  :straight nil
   :init
   (setq-default proced-format 'verbose)
   (setq proced-auto-update-flag t
@@ -184,7 +184,7 @@
 
 ;; Search
 (use-package webjump
-  :ensure nil
+  :straight nil
   :bind ("C-c /" . webjump)
   :init (setq webjump-sites
               '(;; Emacs
@@ -214,7 +214,7 @@
 
 ;; IRC
 (use-package erc
-  :ensure nil
+  :straight nil
   :defines erc-autojoin-channels-alist
   :init (setq erc-interpret-mirc-color t
               erc-lurker-hide-list '("JOIN" "PART" "QUIT")
@@ -254,7 +254,7 @@
      ("x" ztree-toggle-expand-subtree "expand/collapse" :exit t)
      ("<backspace>" ztree-move-up-in-tree "go to parent" :exit t))))
   :bind (:map ztreediff-mode-map
-         ("C-<f5>" . ztree-hydra/body))
+              ("C-<f5>" . ztree-hydra/body))
   :init (setq ztree-draw-unicode-lines t
               ztree-show-number-of-children t))
 

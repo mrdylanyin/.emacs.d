@@ -116,7 +116,7 @@
   (setq doom-modeline-icon centaur-icon
         doom-modeline-minor-modes t)
   :bind (:map doom-modeline-mode-map
-         ("C-<f6>" . doom-modeline-hydra/body))
+              ("C-<f6>" . doom-modeline-hydra/body))
   :pretty-hydra
   ((:title (pretty-hydra-title "Mode Line" 'sucicon "nf-custom-emacs" :face 'nerd-icons-purple)
     :color amaranth :quit-key ("q" "C-g"))
@@ -289,7 +289,7 @@
 
 ;; Show line numbers
 (use-package display-line-numbers
-  :ensure nil
+  :straight nil
   :hook ((prog-mode yaml-mode conf-mode) . display-line-numbers-mode)
   :init (setq display-line-numbers-width-start t))
 
@@ -313,12 +313,12 @@
 (use-package default-text-scale
   :hook (after-init . default-text-scale-mode)
   :bind (:map default-text-scale-mode-map
-         ("s-="   . default-text-scale-increase)
-         ("s--"   . default-text-scale-decrease)
-         ("s-0"   . default-text-scale-reset)
-         ("C-s-=" . default-text-scale-increase)
-         ("C-s--" . default-text-scale-decrease)
-         ("C-s-0" . default-text-scale-reset)))
+              ("s-="   . default-text-scale-increase)
+              ("s--"   . default-text-scale-decrease)
+              ("s-0"   . default-text-scale-reset)
+              ("C-s-=" . default-text-scale-increase)
+              ("C-s--" . default-text-scale-decrease)
+              ("C-s-0" . default-text-scale-reset)))
 
 ;; Display time
 (use-package time
@@ -401,7 +401,7 @@
 ;; Ligatures support
 (when (and emacs/>=28p (not centaur-prettify-symbols-alist))
   (use-package composite
-    :ensure nil
+    :straight nil
     :init (defvar composition-ligature-table (make-char-table nil))
     :hook (((prog-mode
              conf-mode nxml-mode markdown-mode help-mode

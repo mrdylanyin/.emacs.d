@@ -32,10 +32,10 @@
 
 ;; Emacs command shell
 (use-package eshell
-  :ensure nil
+  :straight nil
   :defines eshell-prompt-function
   :bind (:map eshell-mode-map
-         ([remap recenter-top-bottom] . eshell/clear))
+              ([remap recenter-top-bottom] . eshell/clear))
   :config
   (with-no-warnings
     (defun eshell/clear ()

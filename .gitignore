@@ -50,6 +50,7 @@ devdocs/
 eclipse.jdt.ls/
 eln-cache/
 elpa*/
+straight/
 emojis/
 eshell/
 flycheck_*.el*

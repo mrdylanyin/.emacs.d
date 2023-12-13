@@ -286,6 +286,12 @@
         evil-want-C-u-scroll t
         hs-minor-mode-map nil)
   :config
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-normal-state-map (kbd "L") 'evil-end-of-line)
+  (define-key evil-normal-state-map (kbd "H") 'evil-beginning-of-line)
   (setq evil-cross-lines t
         evil-kill-on-visual-paste nil
         evil-move-beyond-eol t
@@ -419,18 +425,6 @@
     "s" 'evil-surround-region
     "S" 'evil-substitute))
 
-
-;; (use-package general
-;;   :demand t
-;;   :config
-;;   (general-create-definer rune/leader-keys
-;;    :keymaps '(normal insert visual emacs)
-;;    :prefix "SPC"
-;;    :global-prefix "C-SPC")
-
-;;   (rune/leader-keys
-;;    "t"  '(:ignore t :which-key "toggles")
-;;    "tt" '(counsel-load-theme :which-key "choose theme")))
 
 
 

@@ -34,7 +34,7 @@
   (require 'init-custom))
 
 (use-package org
-  :ensure nil
+  :straight nil
   :custom-face (org-ellipsis ((t (:foreground unspecified))))
   :pretty-hydra
   ;; See `org-structure-template-alist'
@@ -133,9 +133,9 @@ prepended to the element after the #+HEADER: tag."
           ("j" "Journal" entry (file+olp+datetree
                                 ,(concat org-directory "/journal.org"))
            "*  %^{Title} %?\n%U\n%a\n" :clock-in t :clock-resume t)
-	      ("b" "Book" entry (file+olp+datetree
+	  ("b" "Book" entry (file+olp+datetree
                              ,(concat org-directory "/book.org"))
-	       "* Topic: %^{Description}  %^g %? Added: %U"))
+	   "* Topic: %^{Description}  %^g %? Added: %U"))
 
         org-todo-keywords
         '((sequence "TODO(t)" "DOING(i)" "HANGUP(h)" "|" "DONE(d)" "CANCEL(c)")
@@ -228,7 +228,7 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package org-rich-yank
     :bind (:map org-mode-map
-           ("C-M-y" . org-rich-yank)))
+                ("C-M-y" . org-rich-yank)))
 
   ;; Table of contents
   (use-package toc-org
@@ -254,7 +254,7 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-preview-html
     :diminish
     :bind (:map org-mode-map
-           ("C-c C-h" . org-preview-html-mode))
+                ("C-c C-h" . org-preview-html-mode))
     :init (when (featurep 'xwidget-internal)
             (setq org-preview-html-viewer 'xwidget)))
 
@@ -294,12 +294,12 @@ prepended to the element after the #+HEADER: tag."
     (org-pomodoro-mode-line-overtime ((t (:inherit error))))
     (org-pomodoro-mode-line-break ((t (:inherit success))))
     :bind (:map org-mode-map
-           ("C-c C-x m" . org-pomodoro))
+                ("C-c C-x m" . org-pomodoro))
     :init
     (with-eval-after-load 'org-agenda
       (bind-keys :map org-agenda-mode-map
-        ("K" . org-pomodoro)
-        ("C-c C-x m" . org-pomodoro)))))
+                 ("K" . org-pomodoro)
+                 ("C-c C-x m" . org-pomodoro)))))
 
 ;; Roam
 (use-package org-roam

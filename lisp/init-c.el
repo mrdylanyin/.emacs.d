@@ -35,9 +35,9 @@
 
 ;; C/C++ Mode
 (use-package cc-mode
-  :ensure nil
+  :straight nil
   :bind (:map c-mode-base-map
-         ("<f12>" . compile))
+              ("<f12>" . compile))
   :init (setq-default c-basic-offset 4))
 
 (when (centaur-treesit-available-p)

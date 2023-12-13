@@ -99,6 +99,7 @@ Otherwise the startup will be very slow."
 
 (update-load-path)
 
+(require 'init-straight)
 ;; Requisites
 (require 'init-const)
 (require 'init-custom)
@@ -106,7 +107,7 @@ Otherwise the startup will be very slow."
 
 ;; Packages
 ;; Without this comment Emacs25 adds (package-initialize) here
-(require 'init-package)
+;;(require 'init-package)
 
 ;; Preferences
 (require 'init-base)
@@ -160,6 +161,7 @@ Otherwise the startup will be very slow."
 ;;; My config
 ;;(require 'init-evil)
 (require 'init-keybinding)
+(require 'init-collection)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here

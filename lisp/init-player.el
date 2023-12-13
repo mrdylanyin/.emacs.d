@@ -59,7 +59,7 @@
   ;;
   ;; Built-in mpc client
   (use-package mpc
-    :ensure nil
+    :straight nil
     :bind ("S-<f8>" . mpc)
     :init
     (defun restart-mpd ()

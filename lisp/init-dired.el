@@ -35,9 +35,9 @@
 
 ;; Directory operations
 (use-package dired
-  :ensure nil
+  :straight nil
   :bind (:map dired-mode-map
-         ("C-c C-p" . wdired-change-to-wdired-mode))
+              ("C-c C-p" . wdired-change-to-wdired-mode))
   :config
   ;; Guess a default target directory
   (setq dired-dwim-target t)
@@ -64,17 +64,17 @@
   ;; Quick sort dired buffers via hydra
   (use-package dired-quick-sort
     :bind (:map dired-mode-map
-           ("S" . hydra-dired-quick-sort/body)))
+                ("S" . hydra-dired-quick-sort/body)))
 
   ;; Show git info in dired
   (use-package dired-git-info
     :bind (:map dired-mode-map
-           (")" . dired-git-info-mode)))
+                (")" . dired-git-info-mode)))
 
   ;; Allow rsync from dired buffers
   (use-package dired-rsync
     :bind (:map dired-mode-map
-           ("C-c C-r" . dired-rsync)))
+                ("C-c C-r" . dired-rsync)))
 
   ;; Colorful dired
   (use-package diredfl
@@ -89,9 +89,9 @@
     :hook (dired-mode . nerd-icons-dired-mode))
 
   ;; Extra Dired functionality
-  (use-package dired-aux :ensure nil)
+  (use-package dired-aux :straight nil)
   (use-package dired-x
-    :ensure nil
+    :straight nil
     :demand t
     :config
     (let ((cmd (cond (sys/mac-x-p "open")

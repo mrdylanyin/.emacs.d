@@ -32,11 +32,11 @@
 
 ;; Emacs lisp mode
 (use-package elisp-mode
-  :ensure nil
+  :straight nil
   :bind (:map emacs-lisp-mode-map
-         ("C-c C-x" . ielm)
-         ("C-c C-c" . eval-defun)
-         ("C-c C-b" . eval-buffer))
+              ("C-c C-x" . ielm)
+              ("C-c C-c" . eval-defun)
+              ("C-c C-b" . eval-buffer))
   :config
   ;; Syntax highlighting of known Elisp symbols
   (use-package highlight-defined

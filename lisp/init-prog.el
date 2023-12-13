@@ -37,7 +37,7 @@
 ;; Prettify Symbols
 ;; e.g. display “lambda” as “λ”
 (use-package prog-mode
-  :ensure nil
+  :straight nil
   :hook (prog-mode . prettify-symbols-mode)
   :init
   (setq-default prettify-symbols-alist centaur-prettify-symbols-alist)
@@ -51,7 +51,7 @@
 
 ;; Show function arglist or variable docstring
 (use-package eldoc
-  :ensure nil
+  :straight nil
   :diminish
   :config
   (when (childframe-workable-p)
@@ -72,7 +72,7 @@
 
 ;; Search tool
 (use-package grep
-  :ensure nil
+  :straight nil
   :autoload grep-apply-setting
   :init
   (cond
@@ -141,8 +141,8 @@
 (use-package devdocs
   :autoload (devdocs--installed-docs devdocs--available-docs)
   :bind (:map prog-mode-map
-         ("M-<f1>" . devdocs-dwim)
-         ("C-h D"  . devdocs-dwim))
+              ("M-<f1>" . devdocs-dwim)
+              ("C-h D"  . devdocs-dwim))
   :init
   (defconst devdocs-major-mode-docs-alist
     '((c-mode          . ("c"))
@@ -212,7 +212,7 @@ Install the doc if it's not installed."
                                  '((nil "^[[:space:]]*\\(message\\|service\\|enum\\)[[:space:]]+\\([[:alnum:]]+\\)" 2))))))
 
 (use-package nxml-mode
-  :ensure nil
+  :straight nil
   :mode (("\\.xaml$" . xml-mode)))
 
 ;; Fish shell

@@ -139,7 +139,7 @@
 
 ;; Misc.
 (use-package simple
-  :ensure nil
+  :straight nil
   :hook ((after-init . size-indication-mode)
          (text-mode . visual-line-mode)
          ((prog-mode markdown-mode conf-mode) . enable-trailing-whitespace))
@@ -179,7 +179,7 @@
                       (thread (list (aref val 5) 'face 'font-lock-doc-face))
                       (cmd (list (aref val 6) 'face 'completions-annotations)))
             (push (list p (vector name pid status buf-label tty thread cmd))
-		          tabulated-list-entries)))))
+		  tabulated-list-entries)))))
     (advice-add #'list-processes--refresh :after #'my-list-processes--prettify)))
 
 ;; Misc

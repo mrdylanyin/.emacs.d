@@ -35,7 +35,7 @@
 
 ;; eww
 (use-package eww
-  :ensure nil
+  :straight nil
   :init
   ;; Install: npm install -g readability-cli
   (when (executable-find "readable")
@@ -43,7 +43,7 @@
 
 ;; Webkit browser
 (use-package xwidget
-  :ensure nil
+  :straight nil
   :if (featurep 'xwidget-internal)
   :bind (("C-c C-z w" . xwidget-webkit-browse-url)
          :map xwidget-webkit-mode-map
@@ -75,8 +75,8 @@
   :init (setq css-indent-offset 2))
 
 ;; SCSS
-(use-package scss-mode
-  :init (setq scss-compile-at-save nil))
+;; (use-package scss-mode
+;;   :init (setq scss-compile-at-save nil))
 
 ;; LESS
 (unless (fboundp 'less-css-mode)

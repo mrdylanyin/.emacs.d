@@ -31,7 +31,7 @@
 ;;; Code:
 
 (use-package shell
-  :ensure nil
+  :straight nil
   :hook ((shell-mode . my-shell-mode-hook)
          (comint-output-filter-functions . comint-strip-ctrl-m))
   :init
@@ -111,10 +111,10 @@
            (executable-find "make"))
   (use-package vterm
     :bind (:map vterm-mode-map
-           ([f9] . (lambda ()
-                     (interactive)
-                     (and (fboundp 'shell-pop-toggle)
-                          (shell-pop-toggle)))))
+                ([f9] . (lambda ()
+                          (interactive)
+                          (and (fboundp 'shell-pop-toggle)
+                               (shell-pop-toggle)))))
     :init (setq vterm-always-compile-module t))
 
   (use-package multi-vterm

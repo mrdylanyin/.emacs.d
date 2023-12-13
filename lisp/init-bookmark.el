@@ -32,7 +32,7 @@
 
 ;; Bookmark
 (use-package bookmark
-  :ensure nil
+  :straight nil
   :config
   (with-no-warnings
     ;; Display icons for bookmarks

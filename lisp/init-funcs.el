@@ -253,8 +253,8 @@ Native tree-sitter is introduced since 29."
       (goto-char (point-min))
       (while (re-search-forward
               (format "^[\t ]*[;]*[\t ]*(setq %s .*)" variable)
-                               nil t)
-  (replace-match (format "(setq %s '%s)" variable value) nil nil))
+              nil t)
+        (replace-match (format "(setq %s '%s)" variable value) nil nil))
       (write-region nil nil custom-file)
       (message "Saved %s (%s) to %s" variable value custom-file))))
 
@@ -503,14 +503,14 @@ This issue has been addressed in 28."
     ('auto
      ;; Time-switching themes
      (use-package circadian
-       :ensure t
+       :straight t
        :functions circadian-setup
        :custom (circadian-themes centaur-auto-themes)
        :init (circadian-setup)))
     ('system
      ;; System-appearance themes
      (use-package auto-dark
-       :ensure t
+       :straight t
        :diminish
        :init
        (setq auto-dark-light-theme (alist-get 'light centaur-system-themes)
@@ -679,6 +679,24 @@ This issue has been addressed in 28."
   (if (bound-and-true-p socks-noproxy)
       (proxy-socks-disable)
     (proxy-socks-enable)))
+
+;; At first startup
+(when (and (file-exists-p centaur-custom-example-file)
+           (not (file-exists-p custom-file)))
+  (copy-file centaur-custom-example-file custom-file))
+
+;; Load `custom-file'
+(and (file-readable-p custom-file) (load custom-file))
+
+;; Load custom-post file
+(defun load-custom-post-file ()
+  "Load custom-post file."
+  (cond ((file-exists-p centaur-custom-post-org-file)
+         (and (fboundp 'org-babel-load-file)
+              (org-babel-load-file centaur-custom-post-org-file)))
+        ((file-exists-p centaur-custom-post-file)
+         (load centaur-custom-post-file))))
+(add-hook 'after-init-hook #'load-custom-post-file)
 
 (provide 'init-funcs)
 

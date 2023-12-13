@@ -32,12 +32,12 @@
 
 ;; Delete selection if you insert
 (use-package delsel
-  :ensure nil
+  :straight nil
   :hook (after-init . delete-selection-mode))
 
 ;; Rectangle
 (use-package rect
-  :ensure nil
+  :straight nil
   :bind (:map text-mode-map
          ("<C-return>" . rect-hydra/body)
          :map prog-mode-map
@@ -75,13 +75,13 @@
 
 ;; Automatically reload files was modified by external program
 (use-package autorevert
-  :ensure nil
+  :straight nil
   :diminish
   :hook (after-init . global-auto-revert-mode))
 
 ;; Pass a URL to a WWW browser
 (use-package browse-url
-  :ensure nil
+  :straight nil
   :defines dired-mode-map
   :bind (("C-c C-z ." . browse-url-at-point)
          ("C-c C-z b" . browse-url-of-buffer)
@@ -95,7 +95,7 @@
 
 ;; Click to browse URL or to send to e-mail address
 (use-package goto-addr
-  :ensure nil
+  :straight nil
   :hook ((text-mode . goto-address-mode)
          (prog-mode . goto-address-prog-mode)))
 
@@ -157,7 +157,7 @@
 
 ;; A comprehensive visual interface to diff & patch
 (use-package ediff
-  :ensure nil
+  :straight nil
   :hook(;; show org ediffs unfolded
         (ediff-prepare-buffer . outline-show-all)
         ;; restore window layout when done
@@ -169,7 +169,7 @@
 
 ;; Automatic parenthesis pairing
 (use-package elec-pair
-  :ensure nil
+  :straight nil
   :hook (after-init . electric-pair-mode)
   :init (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
@@ -227,22 +227,22 @@
   ((:title (pretty-hydra-title "Multiple Cursors" 'mdicon "nf-md-cursor_move")
     :color amaranth :quit-key ("q" "C-g"))
    ("Up"
-	(("p" mc/mark-previous-like-this "prev")
-	 ("P" mc/skip-to-previous-like-this "skip")
-	 ("M-p" mc/unmark-previous-like-this "unmark")
-	 ("|" mc/vertical-align "align with input CHAR"))
+    (("p" mc/mark-previous-like-this "prev")
+     ("P" mc/skip-to-previous-like-this "skip")
+     ("M-p" mc/unmark-previous-like-this "unmark")
+     ("|" mc/vertical-align "align with input CHAR"))
     "Down"
     (("n" mc/mark-next-like-this "next")
-	 ("N" mc/skip-to-next-like-this "skip")
-	 ("M-n" mc/unmark-next-like-this "unmark"))
+     ("N" mc/skip-to-next-like-this "skip")
+     ("M-n" mc/unmark-next-like-this "unmark"))
     "Misc"
     (("l" mc/edit-lines "edit lines" :exit t)
-	 ("a" mc/mark-all-like-this "mark all" :exit t)
-	 ("s" mc/mark-all-in-region-regexp "search" :exit t)
+     ("a" mc/mark-all-like-this "mark all" :exit t)
+     ("s" mc/mark-all-in-region-regexp "search" :exit t)
      ("<mouse-1>" mc/add-cursor-on-click "click"))
     "% 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")"
-	(("0" mc/insert-numbers "insert numbers" :exit t)
-	 ("A" mc/insert-letters "insert letters" :exit t)))))
+    (("0" mc/insert-numbers "insert numbers" :exit t)
+     ("A" mc/insert-letters "insert letters" :exit t)))))
 
 ;; Smartly select region, rectangle, multi cursors
 (use-package smart-region
@@ -250,7 +250,7 @@
 
 ;; On-the-fly spell checker
 (use-package flyspell
-  :ensure nil
+  :straight nil
   :diminish
   :if (executable-find "aspell")
   :hook (((text-mode outline-mode) . flyspell-mode)
@@ -272,7 +272,7 @@
 
 ;; Framework for mode-specific buffer indexes
 (use-package imenu
-  :ensure nil
+  :straight nil
   :bind (("C-." . imenu)))
 
 ;; Move to the beginning/end of line or code
@@ -299,14 +299,14 @@
 
 ;; Handling capitalized subwords in a nomenclature
 (use-package subword
-  :ensure nil
+  :straight nil
   :diminish
   :hook ((prog-mode . subword-mode)
          (minibuffer-setup . subword-mode)))
 
 ;; Flexible text folding
 (use-package hideshow
-  :ensure nil
+  :straight nil
   :diminish hs-minor-mode
   :pretty-hydra
   ((:title (pretty-hydra-title "HideShow" 'octicon "nf-oct-fold")
@@ -332,8 +332,8 @@
      ("M-<" beginning-of-buffer "⭶")
      ("M->" end-of-buffer "⭸"))))
   :bind (:map hs-minor-mode-map
-         ("C-~" . hideshow-hydra/body)
-         ("C-S-<escape>" . hideshow-hydra/body))
+              ("C-~" . hideshow-hydra/body)
+              ("C-S-<escape>" . hideshow-hydra/body))
   :hook (prog-mode . hs-minor-mode)
   :config
   ;; More functions
